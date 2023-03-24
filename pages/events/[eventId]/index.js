@@ -12,6 +12,7 @@ const SingleEvent = () => {
 
     const query = router.query;
     const { eventId } = query;
+    // eventId is Null at the first render
 
     const event = getEventById(eventId);
 
