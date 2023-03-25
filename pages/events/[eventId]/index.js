@@ -52,6 +52,8 @@ export async function getStaticProps(context) {
     return {
         props: {
             event
-        }
+        },
+        // it revalidates the page every 30 seconds to not show outdated information (also can be revalidated on the client side)
+        revalidate: 30,
     }
 }
