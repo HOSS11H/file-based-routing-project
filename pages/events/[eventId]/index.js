@@ -4,10 +4,16 @@ import EventLogistics from '../../../components/EventDetail/event-logistics';
 import EventSummary from '../../../components/EventDetail/event-summary';
 import ErrorAlert from '../../../components/UI/ErrorAlert/ErrorAlert';
 import { getEventById, getFeaturedEvents } from '../../../helpers/api-utils';
+import { useRouter } from 'next/router';
 
 const SingleEvent = (props) => {
+    const router = useRouter();
 
+    if (router.isFallback) {
+        return <ErrorAlert><p>Loading....</p></ErrorAlert>
+    }
     if (!props.event) {
+        // You can handle that in the getStaticProps function to redirect to 404 page
         return <ErrorAlert><p>No Data Found</p></ErrorAlert>
     }
 
@@ -36,6 +42,12 @@ export async function getStaticProps(context) {
     const { params } = context;
     const { eventId } = params;
     const event = await getEventById(eventId);
+
+    if (!event) {
+        return {
+            notFound: true
+        }
+    }
 
     return {
         props: {
