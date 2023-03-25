@@ -1,33 +1,45 @@
-import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 import EventContent from '../../../components/EventDetail/event-content';
 import EventLogistics from '../../../components/EventDetail/event-logistics';
 import EventSummary from '../../../components/EventDetail/event-summary';
 import ErrorAlert from '../../../components/UI/ErrorAlert/ErrorAlert';
-import { getEventById } from '../../../dummy-data';
+import { getEventById, getFeaturedEvents } from '../../../helpers/api-utils';
 
-const SingleEvent = () => {
+const SingleEvent = (props) => {
 
-    const router = useRouter()
-
-    const query = router.query;
-    const { eventId } = query;
-    // eventId is Null at the first render
-
-    const event = getEventById(eventId);
-
-    if (!event) {
+    if (!props.event) {
         return <ErrorAlert><p>No Data Found</p></ErrorAlert>
     }
 
     return (
         <Fragment>
-            <EventSummary title={event.title} />
-            <EventLogistics date={event.date} address={event.location} image={event.image} imageAlt={event.title} />
+            <EventSummary title={props.event.title} />
+            <EventLogistics date={props.event.date} address={props.event.location} image={props.event.image} imageAlt={props.event.title} />
             <EventContent>
-                <p>{event.description}</p>
+                <p>{props.event.description}</p>
             </EventContent>
         </Fragment>
     )
 }
 export default SingleEvent;
+
+export async function getStaticPaths() {
+    const featuredEvents = await getFeaturedEvents();
+    return {
+        paths: featuredEvents.map(event => ({ params: { eventId: event.id } })),
+        fallback: true,
+    }
+}
+
+
+export async function getStaticProps(context) {
+    const { params } = context;
+    const { eventId } = params;
+    const event = await getEventById(eventId);
+
+    return {
+        props: {
+            event
+        }
+    }
+}
