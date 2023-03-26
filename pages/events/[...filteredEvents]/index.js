@@ -5,9 +5,10 @@ import ResultsTitle from '../../../components/Events/ResultsTitle/ResultsTitle'
 import Button from '../../../components/UI/Button/Button'
 import ErrorAlert from '../../../components/UI/ErrorAlert/ErrorAlert'
 import { getFilteredEvents } from '../../../helpers/api-utils'
+import Head from 'next/head'
 
 const FilteredEvents = (props) => {
-    const {hasError, events, numMonth, numYear} = props; 
+    const { hasError, events, numMonth, numYear } = props;
 
     if (hasError) {
         return (
@@ -42,6 +43,10 @@ const FilteredEvents = (props) => {
 
     return (
         <div>
+            <Head>
+                <title>Filtered Events</title>
+                <meta name='description' content={`All events for ${numMonth}/${numYear}`} />
+            </Head>
             <ResultsTitle date={date} />
             <EventsList items={events} />
         </div>

@@ -5,6 +5,7 @@ import EventSummary from '../../../components/EventDetail/event-summary';
 import ErrorAlert from '../../../components/UI/ErrorAlert/ErrorAlert';
 import { getEventById, getFeaturedEvents } from '../../../helpers/api-utils';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const SingleEvent = (props) => {
     const router = useRouter();
@@ -19,6 +20,10 @@ const SingleEvent = (props) => {
 
     return (
         <Fragment>
+            <Head>
+                <title>{props.event.title}</title>
+                <meta name='description' content={props.event.description} />
+            </Head>
             <EventSummary title={props.event.title} />
             <EventLogistics date={props.event.date} address={props.event.location} image={props.event.image} imageAlt={props.event.title} />
             <EventContent>

@@ -2,13 +2,14 @@ import { useRouter } from 'next/router';
 import EventsList from "../../components/Events/EventsList/EventsList";
 import EventsSearch from "../../components/Events/EventsSearch/EventsSearch";
 import { getAllEvents } from '../../helpers/api-utils';
+import Head from 'next/head'
 
-const Events = ( props ) => {
+const Events = (props) => {
 
     const router = useRouter()
     const { push } = router
 
-    const findEventsHandler = ( year, month ) => {
+    const findEventsHandler = (year, month) => {
         push({
             pathname: '/events/[...filteredEvents]',
             query: {
@@ -19,6 +20,10 @@ const Events = ( props ) => {
 
     return (
         <div>
+            <Head>
+                <title>NextJS Events</title>
+                <meta name='description' content='Find a lot of great events that allow you to evolve ...' />
+            </Head>
             <EventsSearch onSearch={findEventsHandler} />
             <EventsList items={props.events} />
         </div>
