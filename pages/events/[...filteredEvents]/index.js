@@ -27,9 +27,17 @@ const FilteredEvents = (props) => {
         return <p className='center'>Loading ...</p>
     } */
 
+    const PageHeadData = (
+        <Head>
+            <title>Filtered Events</title>
+            <meta name='description' content={`All events for ${numMonth}/${numYear}`} />
+        </Head>
+    )
+
     if (events.length === 0) {
         return (
             <Fragment>
+                {PageHeadData}
                 <ErrorAlert>
                     <p className='center'>No events found</p>
                 </ErrorAlert>
@@ -43,10 +51,7 @@ const FilteredEvents = (props) => {
 
     return (
         <div>
-            <Head>
-                <title>Filtered Events</title>
-                <meta name='description' content={`All events for ${numMonth}/${numYear}`} />
-            </Head>
+            {PageHeadData}
             <ResultsTitle date={date} />
             <EventsList items={events} />
         </div>
