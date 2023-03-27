@@ -7,7 +7,7 @@ const EventsList = ( props ) => {
         <ul className={classes.list}>
             {items.map( ( event, index ) => {
                 return (
-                    <EventItem key={event.id} item={event}></EventItem>
+                    <EventItem key={event.id} item={event} firstEvent={index === 0} ></EventItem>
                 )
             })}
         </ul>
