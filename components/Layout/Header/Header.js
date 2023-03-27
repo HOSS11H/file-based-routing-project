@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import classes from './Header.module.css';
+import LocalesWidget from '../LocalesWidget/LocalesWidget';
 
-const Header = props => {
+const Header = () => {
     return (
         <header className={classes.header}>
             <div className={classes.logo}>
@@ -11,6 +12,7 @@ const Header = props => {
                 <ul>
                     <li><Link href='/events'>Browse All Events</Link></li>
                 </ul>
+                <LocalesWidget />
             </nav>
         </header>
     )

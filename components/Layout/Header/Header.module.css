@@ -23,6 +23,12 @@
     color          : #94fdfd;
 }
 
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .navigation a {
     text-decoration: none;
     color          : #74dacc;
