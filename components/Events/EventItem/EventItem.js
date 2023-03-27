@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const EventItem = (props) => {
 
-    const { item, firstEvent } = props;
+    const { item, firstItem } = props;
 
     const { id, image, title, location, date } = item;
 
@@ -24,7 +24,7 @@ const EventItem = (props) => {
 
     return (
         <li className={classes.item} >
-            <Image src={`/${image}`} alt={title} width={450} height={450} priority={firstEvent} />
+            <Image src={`/${image}`} alt={title} width={450} height={450} priority={firstItem} />
             <div className={classes.content}>
                 <div>
                     <h2>{title}</h2>
