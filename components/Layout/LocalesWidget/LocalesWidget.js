@@ -35,7 +35,6 @@ const LocalesWidget = (props) => {
             <div className={classes.LocalesWidget__language_options}>
                 <ul className={classes.LocalesWidget__language_options_list}>
                     {options.map((localeKey) => {
-                        console.log(currentPath, localeKey)
                         return (
                             <li key={localeKey} className={classes.LocalesWidget__language_option}>
                                 <Link href={currentPath} locale={localeKey} >

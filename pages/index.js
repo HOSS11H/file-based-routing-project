@@ -1,6 +1,6 @@
 import EventsList from "../components/Events/EventsList/EventsList";
 import { getFeaturedEvents } from "../helpers/api-utils";
-import Head from 'next/head'
+import Head from 'next/head';
 
 const Home = (props) => {
 
